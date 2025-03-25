@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.guide.GuideFragment">
+
+        <TextView
+            android:id="@+id/guide_fragment_h1"
+            style="@style/fragment_tab_text"
+            android:text="@string/guide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/might_need_h2"
+            style="@style/recyclerview_text"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:text="@string/might_need_these"
+            app:layout_constraintStart_toStartOf="@id/guide_fragment_h1"
+            app:layout_constraintTop_toBottomOf="@+id/guide_fragment_h1" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_13sdp"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="@string/see_all"
+            android:textColor="@color/customSecondary"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/might_need_h2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/might_need_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_95sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/might_need_h2"
+            app:layout_constraintTop_toBottomOf="@+id/might_need_h2" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/guide_fragment_search"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginHorizontal="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            app:endIconDrawable="@drawable/ic_search"
+            app:endIconMode="custom"
+            app:endIconTint="@color/customSecondary"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/might_need_recycler">
+
+            <EditText
+                android:id="@+id/searchText"
+                style="@style/search_text"
+                android:hint="@string/a_country_a_city_a_place_or_anything"
+                android:inputType="text"
+                android:textColorHint="#52577A" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/button_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/might_need_h2"
+            app:layout_constraintTop_toBottomOf="@+id/guide_fragment_search" />
+
+        <TextView
+            android:id="@+id/toppick_need_h2"
+            style="@style/recyclerview_text"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/top_pick_articles"
+            app:layout_constraintStart_toStartOf="@id/guide_fragment_h1"
+            app:layout_constraintTop_toBottomOf="@+id/button_recycler" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/toppick_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_210sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/toppick_need_h2"
+            app:layout_constraintTop_toBottomOf="@+id/toppick_need_h2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

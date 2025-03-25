@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.guide.GuideFragment">
+
+        <TextView
+            android:id="@+id/search_fragment_h1"
+            style="@style/fragment_tab_text"
+            android:text="@string/trip_plan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/home_filters"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_82sdp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_28sdp"
+                app:tabGravity="start"
+                app:tabIconTint="@color/customPrimary"
+                app:tabIndicatorColor="@color/customSecondary"
+                app:tabIndicatorFullWidth="true"
+                app:tabInlineLabel="true"
+                app:tabPaddingBottom="@dimen/_2sdp"
+                app:tabSelectedTextColor="@color/customSecondary"
+                app:tabTextAppearance="@style/fragment_home_tablayout_text"
+                app:tabTextColor="@color/customPrimary" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_25sdp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addTripButton"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginBottom="@dimen/_70sdp"
+            android:contentDescription="@string/floating_action_button"
+            android:src="@drawable/ic_plus"
+            app:backgroundTint="@color/customSecondary"
+            app:fabCustomSize="@dimen/_35sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

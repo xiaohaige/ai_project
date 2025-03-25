@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.search.SearchFragment">
+
+        <TextView
+            android:id="@+id/search_fragment_h1"
+            style="@style/fragment_tab_text"
+            android:text="@string/search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_fragment_search"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginHorizontal="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_19sdp"
+            android:layout_marginBottom="@dimen/_1sdp"
+            app:endIconDrawable="@drawable/ic_search"
+            app:endIconMode="custom"
+            app:endIconTint="@color/customSecondary"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_fragment_h1">
+
+            <EditText
+                android:id="@+id/searchField"
+                style="@style/search_text"
+                android:hint="@string/where_next"
+                android:inputType="text"
+                android:textColorHint="#52577A" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/search_fragment_h2"
+            style="@style/recyclerview_text"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/top_destinations"
+            app:layout_constraintStart_toStartOf="@+id/search_fragment_h1"
+            app:layout_constraintTop_toBottomOf="@+id/search_fragment_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/top_destination_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_fragment_h2" />
+
+        <TextView
+            android:id="@+id/search_fragment_h3"
+            style="@style/recyclerview_text"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:text="@string/nearby_attractions"
+            app:layout_constraintStart_toStartOf="@+id/top_destination_recycler"
+            app:layout_constraintTop_toBottomOf="@id/top_destination_recycler" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/nearby_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_225sdp"
+            android:layout_marginHorizontal="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_9sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_fragment_h3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
