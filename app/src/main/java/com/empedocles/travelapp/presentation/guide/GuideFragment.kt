@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.empedocles.travelapp.R
 import com.empedocles.travelapp.databinding.FragmentGuideBinding
+import com.empedocles.travelapp.di.AppModule
 import dagger.hilt.android.AndroidEntryPoint
 
 
