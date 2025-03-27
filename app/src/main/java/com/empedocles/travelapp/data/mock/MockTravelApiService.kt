@@ -7,9 +7,13 @@ import com.empedocles.travelapp.domain.model.TravelModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.io.File
 import java.io.FileWriter
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -53,6 +57,7 @@ class MockTravelApiService @Inject constructor(
                         分类: ${item.category}
                         书签状态: ${item.isBookmark}
                         图片数量: ${item.images.size}
+                        图片列表: ${item.images.map { it.url }.joinToString()}
                     """.trimIndent())
                 }
                 return Response.success(travelList)
@@ -72,10 +77,20 @@ class MockTravelApiService @Inject constructor(
         if (json != null) {
             try {
                 val travelList = gson.fromJson<List<TravelModel>>(json, object : TypeToken<List<TravelModel>>() {}.type)
-                Log.d(TAG, "成功从文件加载旅行列表")
+                Log.d(TAG, "成功从 assets 加载旅行列表")
+                
+                // 更新图片 URL
+                val updatedTravelList = travelList.map { item ->
+                    val updatedImages = item.images.map { image ->
+                        image.copy(
+                            url = "file:///android_asset/pics/${URLEncoder.encode(image.url, StandardCharsets.UTF_8.toString())}"
+                        )
+                    }
+                    item.copy(images = updatedImages)
+                }
                 
                 // 查找指定 ID 的项目
-                val item = travelList.find { it.id == id }
+                val item = updatedTravelList.find { it.id == id }
                 if (item != null) {
                     Log.d(TAG, """
                         找到旅行项目详情:
@@ -87,6 +102,7 @@ class MockTravelApiService @Inject constructor(
                         分类: ${item.category}
                         书签状态: ${item.isBookmark}
                         图片数量: ${item.images.size}
+                        图片列表: ${item.images.joinToString()}
                     """.trimIndent())
                     return Response.success(item)
                 } else {
