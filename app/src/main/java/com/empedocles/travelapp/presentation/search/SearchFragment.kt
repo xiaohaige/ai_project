@@ -18,7 +18,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private var topDestinationAdapter = TopDestinationAdapter(arrayListOf())
     private val viewModel by viewModels<SearchViewModel>()
-    private var nearbyAdapter = NearbyAdapter(arrayListOf())
+    private var searchNearbyAdapter = SearchNearbyAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +58,7 @@ class SearchFragment : Fragment() {
     private fun createNearbyRecycler() {
         binding.nearbyRecycler.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        binding.nearbyRecycler.adapter = nearbyAdapter
+        binding.nearbyRecycler.adapter = searchNearbyAdapter
     }
 
     private fun observeLiveData() {
@@ -68,7 +68,7 @@ class SearchFragment : Fragment() {
             topDestinationAdapter.updateList(
                 topDestination
             )
-            nearbyAdapter.updateList(nearby)
+            searchNearbyAdapter.submitList(nearby)
         }
     }
 

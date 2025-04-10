@@ -9,14 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.empedocles.travelapp.databinding.FragmentSearchResultBinding
-import com.empedocles.travelapp.presentation.search.NearbyAdapter
+import com.empedocles.travelapp.presentation.trip.TipBookMarkAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchResultFragment : Fragment() {
     private val viewModel by viewModels<SearchResultViewModel>()
     private lateinit var query: String
-    private var adapter = NearbyAdapter(arrayListOf())
+    private var adapter = TipBookMarkAdapter()
     private lateinit var binding: FragmentSearchResultBinding
 
     override fun onCreateView(
@@ -69,8 +69,7 @@ class SearchResultFragment : Fragment() {
                     } else {
                         binding.noResult.visibility = View.GONE
                         binding.searchResultRecycler.visibility = View.VISIBLE
-                        adapter.updateList(state.searchResults)
-
+                        adapter.submitList(state.searchResults)
                     }
                 }
             }

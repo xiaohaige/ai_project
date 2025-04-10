@@ -1,10 +1,12 @@
-package com.empedocles.travelapp.presentation.search
+package com.empedocles.travelapp.presentation.trip
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.empedocles.travelapp.R
 import com.empedocles.travelapp.databinding.FragmentSearchNearbyrecyclerItemBinding
@@ -12,27 +14,22 @@ import com.empedocles.travelapp.domain.model.TravelModel
 import com.empedocles.travelapp.util.circularProgressFactory
 import com.empedocles.travelapp.util.downloadFromUrl
 
-class NearbyAdapter (private val travelList: ArrayList<TravelModel>) :
-    RecyclerView.Adapter<NearbyAdapter.ItemHolder>() {
+class TipBookMarkAdapter : ListAdapter<TravelModel, TipBookMarkAdapter.NearbyViewHolder>(DiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NearbyViewHolder {
         val itemBinding = FragmentSearchNearbyrecyclerItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return ItemHolder(itemBinding)
+        return NearbyViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.bind(travelList[position])
+    override fun onBindViewHolder(holder: NearbyViewHolder, position: Int) {
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return travelList.size
-    }
-
-    class ItemHolder(private val binding: FragmentSearchNearbyrecyclerItemBinding) :
+    class NearbyViewHolder(private val binding: FragmentSearchNearbyrecyclerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(travelModel: TravelModel) {
             val bookMarkDrawable = if (travelModel.isBookmark) R.drawable.ic_bookmark_selected else R.drawable.ic_bookmark
@@ -49,9 +46,13 @@ class NearbyAdapter (private val travelList: ArrayList<TravelModel>) :
         }
     }
 
-    fun updateList(newEstateList: List<TravelModel>) {
-        travelList.clear()
-        travelList.addAll(newEstateList)
-        notifyDataSetChanged()
+    class DiffCallback : DiffUtil.ItemCallback<TravelModel>() {
+        override fun areItemsTheSame(oldItem: TravelModel, newItem: TravelModel): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: TravelModel, newItem: TravelModel): Boolean {
+            return oldItem == newItem
+        }
     }
 }

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.empedocles.travelapp.data.local.TripEntity
 import com.empedocles.travelapp.databinding.FragmentTripTabLayoutItemBinding
 import com.empedocles.travelapp.domain.model.TravelModel
-import com.empedocles.travelapp.presentation.search.NearbyAdapter
 
 class ViewPagerAdapter(
     private val tripList: ArrayList<TripEntity>,
@@ -53,7 +52,8 @@ class ViewPagerAdapter(
                 }
 
                 1 -> {
-                    val adapter = NearbyAdapter(bookMarkList)
+                    val adapter = TipBookMarkAdapter()
+                    adapter.submitList(bookMarkList)
                     binding.tripRecyclerView.layoutManager =
                         LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     binding.tripRecyclerView.adapter = adapter
